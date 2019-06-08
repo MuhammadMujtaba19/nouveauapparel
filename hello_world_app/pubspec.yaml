@@ -9,7 +9,7 @@ description: A new Flutter project.
 # Read more about versioning at semver.org.
 version: 1.0.0+1
 
-environment:
+environment:  
   sdk: ">=2.0.0-dev.68.0 <3.0.0"
 
 dependencies:
@@ -19,6 +19,7 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^0.1.2
+  firebase_database: ^3.0.2
 
 dev_dependencies:
   flutter_test:
@@ -39,6 +40,8 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
    - assets/pic1.jpg
+   - assets/background.jpg
+   - assets/ApparelBackground.png
   #  - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

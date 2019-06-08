@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "672664743301",
+    "firebase_url": "https://nouveauapparel-39db8.firebaseio.com",
+    "project_id": "nouveauapparel-39db8",
+    "storage_bucket": "nouveauapparel-39db8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:672664743301:android:336a41052f9eea8d",
+        "android_client_info": {
+          "package_name": "com.example.helloworldapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "672664743301-r4dk1bkj5gt34m2g7duiov6evis01mfi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDOFc0G9MKbPq7dMZfbL2hoohrzMRRtyXw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "672664743301-r4dk1bkj5gt34m2g7duiov6evis01mfi.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
