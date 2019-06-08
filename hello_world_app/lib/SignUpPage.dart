@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:firebase_database/firebase_database.dart';
 class SignupPage extends StatefulWidget {
   @override
   _SignupPageState createState() => _SignupPageState();
@@ -25,6 +25,12 @@ class _SignupPageState extends State<SignupPage> {
   String _Email;
   String _Password;
   String _PhoneNum;
+
+
+  final _formKey = new GlobalKey<FormState>();
+  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
+
+  FirebaseDatabase database = FirebaseDatabase.instance;
 
 
 
