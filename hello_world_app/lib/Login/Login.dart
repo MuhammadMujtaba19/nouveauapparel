@@ -6,9 +6,7 @@ import 'package:hello_world_app/Login/SignUpPage.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class LoginPage extends StatefulWidget {
-  
-
-  
+    
   LoginPage({
     this.auth,
     this.onSignedIn,
@@ -22,6 +20,7 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+
 bool obsureTextValue = true;
 
   void _ChangeText(){
@@ -63,11 +62,6 @@ bool obsureTextValue = true;
         await auth.signInWithEmailAndPassword(
             email: _email, password: _password);
         print("User signed in");
-        _scaffoldKey.currentState.showSnackBar(
-            SnackBar(
-              content: new Text('User signed in'),
-              duration: new Duration(seconds: 10),
-            ));
         Navigator.push(context, MaterialPageRoute(builder: (context)=> mainApplication()));
 //        widget.onSignedIn();
 
@@ -133,7 +127,12 @@ bool obsureTextValue = true;
                 padding: EdgeInsets.only(top: 25.0, left: 20.0, right: 20.0),
                 child: Column(
                   children: <Widget>[
-                    TextField(
+                    new TextFormField(
+                          validator: (input){
+                              EmailFieldValidator.validate(input);
+                          },
+                          onSaved: (input) => _email = input,
+                          keyboardType: TextInputType.emailAddress,
                       decoration: InputDecoration(
                           labelText: 'EMAIL',
                           labelStyle: TextStyle(
@@ -144,8 +143,13 @@ bool obsureTextValue = true;
                               borderSide: BorderSide(color: Colors.green))),
                     ),
                     SizedBox(height: 20.0),
-                    TextField(
-                      decoration: InputDecoration(
+                    new TextFormField(
+                          validator: (input){
+                            PasswordFieldValidator.validate(input);
+                          },
+                          onSaved: (input) => _password    = input,
+                          keyboardType: TextInputType.text,
+                            decoration: InputDecoration(
                            suffixIcon: IconButton(icon: new Icon(Icons.remove_red_eye),onPressed: _ChangeText ,color: Colors.grey,),
                           labelText: 'PASSWORD',
                           labelStyle: TextStyle(
@@ -229,5 +233,23 @@ bool obsureTextValue = true;
         ) 
         
     );
+  }
+}
+class EmailFieldValidator{
+  static String validate(String input){
+    if(input.isEmpty){
+      return 'Please Type an Email.';
+    } else {
+      return null;
+    }
+  }
+}
+class PasswordFieldValidator{
+  static String validate(String input){
+    if (input.length < 6) {
+      return 'Password length should be greater than 6.';
+    } else {
+      return null;
+    }
   }
 }

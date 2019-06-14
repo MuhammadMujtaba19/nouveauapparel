@@ -69,14 +69,7 @@ class _SignupPageState extends State<SignupPage> {
           "Phone" : _phoneNum,
         });
 
-        _scaffoldKey.currentState.showSnackBar(
-            SnackBar(
-              content: new Text('User signed in'),
-              duration: new Duration(seconds: 10),
-            ));
-        Navigator.push(
-            context, MaterialPageRoute(builder: (context) => LoginPage()));
-
+        Navigator.push(context, MaterialPageRoute(builder: (context) => LoginPage()));
       }
       catch (e){
 
@@ -197,15 +190,17 @@ class _SignupPageState extends State<SignupPage> {
                             borderSide: BorderSide(color: Colors.green))),
                   ),
                   SizedBox(height: 50.0),
-                  Container(
+
+              GestureDetector(
+                          onTap: validateAndSubmit,
+                          child:  Container(
                       height: 40.0,
                       child: Material(
                         borderRadius: BorderRadius.circular(20.0),
                         shadowColor: Colors.greenAccent,
                         color: Colors.green,
                         elevation: 7.0,
-                        child: GestureDetector(
-                          onTap: validateAndSubmit,
+                     
                           child: Center(
                             child: Text(
                               'SIGNUP',
@@ -215,8 +210,10 @@ class _SignupPageState extends State<SignupPage> {
                                   fontFamily: 'Montserrat'),
                             ),
                           ),
-                        ),
+                      
                       )),
+                          )
+                 
                   
                 ],
               )
