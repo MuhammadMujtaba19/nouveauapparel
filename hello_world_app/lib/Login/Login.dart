@@ -1,11 +1,22 @@
 
 import 'package:flutter/material.dart';
 import 'package:hello_world_app/HomePage.dart';
+import 'package:hello_world_app/Login/Authentication.dart';
 import 'package:hello_world_app/Login/SignUpPage.dart';
-import 'package:hello_world_app/HomePage.dart';
-
+import 'package:firebase_auth/firebase_auth.dart';
 
 class LoginPage extends StatefulWidget {
+  
+
+  
+  LoginPage({
+    this.auth,
+    this.onSignedIn,
+  });
+  
+  final BaseAuth auth;
+  final VoidCallback onSignedIn;
+  
   @override
   _LoginPageState createState() => new _LoginPageState();
 }
@@ -23,6 +34,58 @@ bool obsureTextValue = true;
      }
     });
   }
+
+
+   Future moveToSignUp() {
+    Navigator.push(context,
+        MaterialPageRoute(builder: (context) => SignupPage(auth: new Auth ())));
+
+  }
+
+  String _email,_password;
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
+  FirebaseAuth auth = FirebaseAuth.instance;
+
+  bool validateAndSave() {
+    final form = _formKey.currentState;
+    if (form.validate()) {
+      form.save();
+      print("Form is valid");
+      return true;
+    }
+    return false;
+  }
+
+  Future validateAndSubmit () async {
+    if (validateAndSave()){
+      try{
+        await auth.signInWithEmailAndPassword(
+            email: _email, password: _password);
+        print("User signed in");
+        _scaffoldKey.currentState.showSnackBar(
+            SnackBar(
+              content: new Text('User signed in'),
+              duration: new Duration(seconds: 10),
+            ));
+        Navigator.push(context, MaterialPageRoute(builder: (context)=> mainApplication()));
+//        widget.onSignedIn();
+
+      }
+      catch (e){
+        print("User not signed in" + e.toString());
+        _scaffoldKey.currentState.showSnackBar(
+            SnackBar(
+              content: new Text(e.toString()),
+              duration: new Duration(seconds: 10),
+            ));
+      }
+    }
+  }
+
+
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -117,9 +180,7 @@ bool obsureTextValue = true;
                         color: Colors.green,
                         elevation: 7.0,
                         child: GestureDetector(
-                          onTap: () {
-                            Navigator.push(context, MaterialPageRoute(builder: (context) => mainApplication() ));
-                          },
+                          onTap: validateAndSubmit,
                           child: Center(
                             child: Text(
                               'LOGIN',
@@ -146,9 +207,7 @@ bool obsureTextValue = true;
                 ),
                 SizedBox(width: 5.0),
                 InkWell(
-                  onTap: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context)=>SignupPage()));
-                  },
+                  onTap: moveToSignUp,
                   child: Text(
                     'Register',
                     style: TextStyle(

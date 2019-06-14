@@ -1,6 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_database/firebase_database.dart';
+import 'package:hello_world_app/Login/Login.dart';
+import 'package:hello_world_app/Login/Authentication.dart';
+
+
 class SignupPage extends StatefulWidget {
+
+   final BaseAuth auth;
+  SignupPage({this.auth});
+
   @override
   _SignupPageState createState() => _SignupPageState();
 }
@@ -21,10 +29,10 @@ class _SignupPageState extends State<SignupPage> {
     });
   }
 
-  String _FullName;
-  String _Email;
-  String _Password;
-  String _PhoneNum;
+  String _fullName;
+  String _email;
+  String _password;
+  String _phoneNum;
 
 
   final _formKey = new GlobalKey<FormState>();
@@ -33,12 +41,68 @@ class _SignupPageState extends State<SignupPage> {
   FirebaseDatabase database = FirebaseDatabase.instance;
 
 
+  bool validateAndSave() {
+
+
+
+    final form = _formKey.currentState;
+    if (form.validate()) {
+      form.save();
+      print("Form is valid");
+        return true;
+    }
+    return false;
+  }
+
+
+  Future validateAndSubmit () async {
+    
+    if (validateAndSave()){
+      try {
+        
+        String userId = await widget.auth. createUserWithEmailAndPassword(_email, _password);
+        print(userId.toString());
+        print("User created " + userId);
+        database.reference().child('Users').child(userId).set({
+          "Full Name": _fullName,
+          "Email" : _email,
+          "Phone" : _phoneNum,
+        });
+
+        _scaffoldKey.currentState.showSnackBar(
+            SnackBar(
+              content: new Text('User signed in'),
+              duration: new Duration(seconds: 10),
+            ));
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => LoginPage()));
+
+      }
+      catch (e){
+
+        print("User not created " + e.toString());
+        _scaffoldKey.currentState.showSnackBar(
+            SnackBar(
+              content: new Text(e.toString()),
+              duration: new Duration(seconds: 10),
+            ));
+    }
+    }
+
+  }
+
+
+
+
 
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
         resizeToAvoidBottomPadding: false,
-        body:  Column(crossAxisAlignment: CrossAxisAlignment.start, children: <
+        body:  new Form(
+          key: _formKey,
+          child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start, children: <
             Widget>[
           Container(
             child: Stack(
@@ -68,19 +132,26 @@ class _SignupPageState extends State<SignupPage> {
               padding: EdgeInsets.only(top: 25.0, left: 20.0, right: 20.0),
               child: Column(
                 children: <Widget>[
-                  TextField(
+                  TextFormField(
+                    keyboardType: TextInputType.text,
+                    validator: (input) => input.isEmpty ? 'Name cannot be empty' : null,
+                      onSaved: (input) => _fullName= input,
                     decoration: InputDecoration(
-                        
-                        labelText: 'FULL NAME ',
+                      labelText: 'FULL NAME ',
                         labelStyle: TextStyle(
                             fontFamily: 'Montserrat',
                             fontWeight: FontWeight.bold,
                             color: Colors.grey),
                         focusedBorder: UnderlineInputBorder(
                             borderSide: BorderSide(color: Colors.green))),
+                        
+                        
                   ),
                   SizedBox(height: 10.0),
-                  TextField(
+                  TextFormField(
+                    keyboardType: TextInputType.emailAddress,
+                      validator: (input) => input.isEmpty ? 'Email cannot be empty' : null,
+                      onSaved: (input) => _email= input,
                     decoration: InputDecoration(
                         labelText: 'EMAIL',
                         labelStyle: TextStyle(
@@ -93,7 +164,10 @@ class _SignupPageState extends State<SignupPage> {
                             borderSide: BorderSide(color: Colors.green))),
                   ),
                   SizedBox(height: 10.0),
-                  TextField(
+                  TextFormField(
+                    keyboardType: TextInputType.text,
+                      validator: (input) => input.isEmpty ? 'Password cannot be empty' : null,
+                      onSaved: (input) => _password = input,
                     decoration: InputDecoration(
                         suffixIcon: IconButton(icon: new Icon(Icons.remove_red_eye),onPressed: _ChangeText ,color: Colors.grey,),
                         
@@ -108,7 +182,10 @@ class _SignupPageState extends State<SignupPage> {
                     obscureText: obsureTextValue,
                   ),
                   SizedBox(height: 10.0),
-                  TextField(
+                  TextFormField(
+                    keyboardType: TextInputType.text,
+                      validator: (input) => input.isEmpty ? 'Phone Number cannot be empty' : null,
+                      onSaved: (input) => _phoneNum = input,
                     decoration: InputDecoration(
                         
                         labelText: 'PHONE NO.',
@@ -128,7 +205,7 @@ class _SignupPageState extends State<SignupPage> {
                         color: Colors.green,
                         elevation: 7.0,
                         child: GestureDetector(
-                          onTap: () {},
+                          onTap: validateAndSubmit,
                           child: Center(
                             child: Text(
                               'SIGNUP',
@@ -166,7 +243,9 @@ class _SignupPageState extends State<SignupPage> {
           //   ],
           // )
         ]
-        )
+        ) 
+          ,)
+        
         );
   }
 }

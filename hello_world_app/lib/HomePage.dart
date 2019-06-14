@@ -4,6 +4,7 @@ import 'category.dart';
 import 'temp.dart';
 import 'productDetail.dart';
 import 'productList.dart';
+import 'Login/Authentication.dart';
 
 
 int pageSelectorIndex=0;
@@ -17,6 +18,18 @@ String itemName,itemImage,itemSubname,itemPrice, itemRating;
 
 
 class mainApplication extends StatefulWidget {
+  
+  
+  mainApplication
+  ({
+    this.auth,
+    this.onSignedOut,
+  });
+  
+  final BaseAuth auth;
+  final VoidCallback onSignedOut;
+
+  
   @override
   _mainApplicationState createState() => _mainApplicationState();
 }
