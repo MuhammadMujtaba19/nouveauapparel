@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/animation.dart';
 import 'category.dart';
-import 'temp.dart';
+import 'Checkout/shoppingCart.dart';
+import 'Checkout/addressDetails.dart';
+
 import 'productDetail.dart';
 import 'productList.dart';
 import 'Login/Authentication.dart';
@@ -60,11 +62,11 @@ class _mainApplicationState extends State<mainApplication> {
                   title: Text("Home")
                 ),
                 BottomNavigationBarItem(
-                  icon: Icon(Icons.receipt),
+                  icon: Icon(Icons.format_list_bulleted),
                   title: Text("Category")
                 ),
                 BottomNavigationBarItem(
-                  icon: Icon(Icons.redeem),
+                  icon: Icon(Icons.shopping_cart),
                   title: Text("Sale Offers")
                 ),
                 BottomNavigationBarItem(
@@ -262,7 +264,10 @@ class _homePageState extends State<homePage> with SingleTickerProviderStateMixin
       return new categoryPage();
     }
     else if(pageSelectorIndex==2){
-      return new temp();
+      return new MyCart();
+    }
+    else if (pageSelectorIndex==3){
+      return new AddressPage();
     }
   }
 }
