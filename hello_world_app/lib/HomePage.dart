@@ -133,8 +133,8 @@ class _homePageState extends State<homePage> with SingleTickerProviderStateMixin
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: <Widget>[
-                            Container(margin: EdgeInsets.only(left:10,top: 3,bottom: 3),child:Text("Search ",style: TextStyle(letterSpacing: 0.9,fontSize: 17,color: Colors.grey),)),
-                            Container(margin: EdgeInsets.only(right:10,top: 3,bottom: 3),child:Icon(Icons.search,color: Colors.grey,)),                          
+                            // Container(margin: EdgeInsets.only(left:10,top: 3,bottom: 3),child:Text("Search ",style: TextStyle(letterSpacing: 0.9,fontSize: 17,color: Colors.grey),)),
+                            // Container(margin: EdgeInsets.only(right:10,top: 3,bottom: 3),child:Icon(Icons.search,color: Colors.grey,)),                          
                             
                           ],
                         )                   
@@ -162,6 +162,7 @@ class _homePageState extends State<homePage> with SingleTickerProviderStateMixin
                   borderRadius: BorderRadius.all(Radius.circular(25)),                  
                   child: Card(
                     child: OutlineButton(
+                      onPressed: (){},
                       padding: EdgeInsets.all(20),
                       child: Text("T-Shirt"),
                     ),
@@ -171,6 +172,7 @@ class _homePageState extends State<homePage> with SingleTickerProviderStateMixin
                   borderRadius: BorderRadius.all(Radius.circular(25)),                  
                   child: Card(
                     child: OutlineButton(
+                      onPressed: (){},
                       padding: EdgeInsets.all(20),
                       child: Text("Hoddie"),
                     ),
@@ -180,6 +182,7 @@ class _homePageState extends State<homePage> with SingleTickerProviderStateMixin
                   borderRadius: BorderRadius.all(Radius.circular(25)),                  
                   child: Card(
                     child: OutlineButton(
+                      onPressed: (){},
                       padding: EdgeInsets.all(20),
                       child: Text("Chinos"),
                     ),
@@ -189,6 +192,7 @@ class _homePageState extends State<homePage> with SingleTickerProviderStateMixin
                   borderRadius: BorderRadius.all(Radius.circular(25)),                  
                   child: Card(
                     child: OutlineButton(
+                      onPressed: (){},
                       padding: EdgeInsets.all(20),
                       child: Text("Heifelers"),
                     ),
