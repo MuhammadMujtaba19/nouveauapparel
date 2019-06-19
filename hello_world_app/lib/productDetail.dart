@@ -202,6 +202,7 @@ class ProductDetail extends State<ProductPage>{
                                         CircleAvatar(
                                           backgroundColor: c,
                                             child:IconButton(
+                                              onPressed: (){},
                                               color: c,
                                                 icon:Icon(Icons
                                                     .remove,color:Colors.white)
@@ -211,6 +212,7 @@ class ProductDetail extends State<ProductPage>{
                                         CircleAvatar(
                                           backgroundColor: c,
                                             child:IconButton(
+                                              onPressed: (){},
                                               color: c,
                                                 icon:Icon(Icons.add,color:Colors.white)
                                             )

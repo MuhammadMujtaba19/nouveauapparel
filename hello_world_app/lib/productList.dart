@@ -111,13 +111,14 @@ class ProductList extends State<productListPage>{
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: <Widget>[
                   IconButton(
-
+                    onPressed: (){},
                     icon: isfavourite ? Icon(Icons.favorite_border, color:Colors.red, size: 15, ) :Icon(Icons.favorite_border, color:Colors.grey, size: 15, )  ,
 
                   ),
                   SizedBox(width:35),
 
                   IconButton(
+                      onPressed: (){},
                       icon:Icon(Icons.share,color:Colors.grey,size: 15, )
                   )
                 ],

@@ -47,6 +47,7 @@ bool obsureTextValue = true;
   FirebaseAuth auth = FirebaseAuth.instance;
 
   bool validateAndSave() {
+  
     final form = _formKey.currentState;
     if (form.validate()) {
       form.save();
@@ -59,6 +60,7 @@ bool obsureTextValue = true;
   Future validateAndSubmit () async {
     if (validateAndSave()){
       try{
+          print("Hello in this doododos");
         await auth.signInWithEmailAndPassword(
             email: _email, password: _password);
         print("User signed in");
