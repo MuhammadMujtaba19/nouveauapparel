@@ -20,18 +20,18 @@ List arr = [
       'https://images.unsplash.com/photo-1499202977705-65f436dac18a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60',
       "Mens Chinos"),
   model(
-      "https://images.unsplash.com/photo-1471286174890-9c112ffca5b4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60",
-      "Kid Collections"),
+      'https://images.unsplash.com/photo-1490367532201-b9bc1dc483f6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80',
+      "Men's Formal"),
   model(
-      'https://images.unsplash.com/photo-1440013152285-4af9cff35d94?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60',
-      "Men's Basic"),
-  model(
-      'https://images.unsplash.com/photo-1503393880700-59679e01bbb4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60',
+      // https://images.unsplash.com/photo-1528356308114-77df487717a2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1834&q=80
+      'https://images.unsplash.com/photo-1551411979-4b7e24ec51e2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80',
       "Female Apparels"),
   model(
       'https://static-01.daraz.pk/original/7e6f0af50c09bd81bf4344ab37701780.jpg',
       "Men's Polo")
 ];
+
+
 
 class categoryPage extends StatelessWidget {
   @override

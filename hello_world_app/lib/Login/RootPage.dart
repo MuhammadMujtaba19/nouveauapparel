@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:hello_world_app/Login/Login.dart';
 import 'package:hello_world_app/Login/Authentication.dart';
 import 'package:hello_world_app/HomePage.dart';
+import 'package:hello_world_app/splashScreen.dart';
 
 class RootPage extends StatefulWidget {
   RootPage({this.auth});
@@ -42,6 +43,6 @@ class _RootPageState extends State<RootPage> {
     if (authStatus == AuthStatus.notSignedIn)
       return new LoginPage();
     else
-      return new mainApplication();
+      return new SplashScreen();
   }
 }

@@ -21,6 +21,7 @@ dependencies:
   cupertino_icons: ^0.1.2
   firebase_database: ^3.0.2
   firebase_auth:
+  animated_background: ^0.0.2
 
 dev_dependencies:
   flutter_test:
@@ -43,6 +44,9 @@ flutter:
    - assets/pic1.jpg
    - assets/background.jpg
    - assets/ApparelBackground.png
+   - assets/tee1.jpg
+   - assets/tee2.jpg
+   - assets/tee3.jpg
   #  - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
