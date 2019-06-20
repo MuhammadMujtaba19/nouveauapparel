@@ -290,165 +290,118 @@ String itemName,itemImage,itemSubname,itemPrice, itemRating;
 }
 
 class _ProductPageState extends State<ProductPage> {
-  ScrollController scrollController;
 
-  Widget _buildActions() {
-    Widget profile = new GestureDetector(
-      onTap: () => showProfile(),
-      child: new Container(
-        height: 30.0,
-        width: 45.0,
-        decoration: new BoxDecoration(
-          shape: BoxShape.circle,
-          color: Colors.grey,
-          image: new DecorationImage(
-            image: new ExactAssetImage("assets/logo.png"),
-            fit: BoxFit.cover,
-          ),
-          border: Border.all(color: Colors.black, width: 2.0),
-        ),
-      ),
-    );
-
-    double scale;
-    if (scrollController.hasClients) {
-      scale = scrollController.offset / 300;
-      scale = scale * 2;
-      if (scale > 1) {
-        scale = 1.0;
-      }
-    } else {
-      scale = 0.0;
-    }
-
-    return new Transform(
-      transform: new Matrix4.identity()..scale(scale, scale),
-      alignment: Alignment.center,
-      child: profile,
-    );
-  }
-
-  @override
-  void dispose() {
-    scrollController.dispose();
-    super.dispose();
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    scrollController = new ScrollController();
-    scrollController.addListener(() => setState(() {}));
-  }
+  
 
   @override
   Widget build(BuildContext context) {
+  var RatingCount  = int.parse(widget.itemRating);
+  Size screenSize = MediaQuery.of(context).size;
 
-    var flexibleSpaceWidget = new SliverAppBar(
-      expandedHeight: 200.0,
-      pinned: true,
+    return Scaffold(
+      backgroundColor: Colors.white,
+      body: SafeArea(
+        top: true,
+        child: CustomScrollView(
+      slivers: <Widget>[
+        new SliverAppBar(
+      floating: true,
+      pinned: false,
+      expandedHeight: 280.0,
+     // pinned: true,
       flexibleSpace: FlexibleSpaceBar(
           centerTitle: true,
-          title: Text("Product Details",
+          title: Text("",
               style: TextStyle(
                 color: Colors.black,
                 fontSize: 16.0,
               )),
           background:  new Container(
-                height: 200.0,
+                height: 280.0,
                 decoration: new BoxDecoration(
                     image: DecorationImage(
                       image: NetworkImage(widget.itemImage),
                       fit:BoxFit.contain,
                     ),
-                    borderRadius: BorderRadius.only(
-                      bottomRight: Radius.circular(120.0),
-                      bottomLeft: Radius.circular(120.0),
-                    )
+                    // borderRadius: BorderRadius.only(
+                    //   bottomRight: Radius.circular(120.0),
+                    //   bottomLeft: Radius.circular(120.0),
+                    // )
                 )
             ),
           ),
-      actions: <Widget>[
-        new Padding(
-          padding: EdgeInsets.all(5.0),
-          child: _buildActions(),
-        ),
-      ],
-    );
 
-    return Scaffold(
-      body: new DefaultTabController(
-        length: 3,
-        child: NestedScrollView(
-          controller: scrollController,
-          headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
-            return <Widget>[
-              flexibleSpaceWidget,
-              SliverPersistentHeader(
-                delegate: _SliverAppBarDelegate(
-                  TabBar(
-                    labelColor: Colors.black87,
-                    unselectedLabelColor: Colors.black26,
-                    tabs: [
-                      Tab(
-                        icon: Icon(Icons.account_box),
-                        text: "Detail",
-                      ),
-                      Tab(icon: Icon(Icons.add_location), text: "Address"),
-                      Tab(icon: Icon(Icons.monetization_on), text: "Earning"),
-                    ],
-                  ),
-                ),
-                pinned: true,
-              ),
-            ];
-          },
-          body: new TabBarView(
-            children: <Widget>[
-              new Center(
-                child: new Text("AAAAAAAAAAAAAA"),
-              )
-            ],
-          ),
-        ),
+    ),
+    SliverFillRemaining(
+      child: new Container(
+       child: Column(
+         children: <Widget>[
+          //  new SizedBox(height:20.0,),
+           new Card(
+             child: new Container(
+               width: screenSize.width,
+               margin: EdgeInsets.only(left:20, right: 20.0),
+               child: Column(
+                 crossAxisAlignment: CrossAxisAlignment.start,
+                 children: <Widget>[
+                   SizedBox(height: 10.0,),
+                   Text(widget.itemName,style: TextStyle(
+                    fontSize: 18.0, fontWeight: FontWeight.w700
+                )),
+                SizedBox(height:10.0),
+                Text(widget.itemSubname,style: TextStyle(
+                fontSize: 14.0, fontWeight: FontWeight.w400
+                )),
+                SizedBox(height:10.0),
+
+                Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                new Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                 children: <Widget>[
+                    new Row(
+                      children: List.generate(5,(index){
+                        return Icon(
+                          index < RatingCount? Icons.star : Icons.star_border
+                        );
+                      }),
+                    ),
+                    SizedBox(width:5.0),
+                     Text(widget.itemRating,style: TextStyle(
+                     fontSize: 14.0, fontWeight: FontWeight.w400
+                       ))
+                      ]
+                    ),
+                Text("RS :"+widget.itemPrice,style: TextStyle(
+                    fontSize: 20.0, fontWeight: FontWeight.w700,
+                    color:Colors.red
+                    ))
+                ],)
+
+
+
+                 ],
+               ),
+             ),
+           )
+         ],
+       )
       ),
+    )
+      ],
+    ),
+      )
     );
+
+
+
+
   }
 
-  showProfile() {
-    Navigator.pushNamed(context, '/profile');
-  }
+
+
+
+
+
 }
-
-class _SliverAppBarDelegate extends SliverPersistentHeaderDelegate {
-  final TabBar _tabBar;
-
-  _SliverAppBarDelegate(this._tabBar);
-
-  @override
-  double get minExtent => _tabBar.preferredSize.height;
-
-  @override
-  double get maxExtent => _tabBar.preferredSize.height;
-
-  @override
-  Widget build(
-      BuildContext context, double shrinkOffset, bool overlapsContent) {
-    return new Container(
-      child: _tabBar,
-    );
-  }
-
-  @override
-  bool shouldRebuild(_SliverAppBarDelegate oldDelegate) {
-    return false;
-  }
-}
-
-
-
-
-
-
-
-

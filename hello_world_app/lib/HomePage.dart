@@ -202,6 +202,7 @@ class _homePageState extends State<homePage> with SingleTickerProviderStateMixin
                   borderRadius: BorderRadius.all(Radius.circular(25)),                  
                   child: Card(
                     child: OutlineButton(
+                      onPressed: (){},
                       padding: EdgeInsets.all(20),
                       child: Text("Shirt"),
                     ),
@@ -227,7 +228,7 @@ class _homePageState extends State<homePage> with SingleTickerProviderStateMixin
                 child: GestureDetector(
                   onTap: (){
                     itemName="Product Name";itemImage=path;
-                    itemPrice="25000";itemRating="5.0";
+                    itemPrice="25000";itemRating="4";
                     itemSubname="Shirt";
                     Navigator.of(context).pushNamed('/productPage');},
                   child: Container(
