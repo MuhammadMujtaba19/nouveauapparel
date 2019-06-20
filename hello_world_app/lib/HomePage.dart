@@ -225,8 +225,8 @@ class _homePageState extends State<homePage> with SingleTickerProviderStateMixin
                 child: GestureDetector(
                   onTap: (){
                     itemName="Product Name";itemImage=path;
-                    itemPrice="RS: 250";itemRating="4.5";
-                    itemSubname="Blah Blah Blah";
+                    itemPrice="25000";itemRating="5.0";
+                    itemSubname="Shirt";
                     Navigator.of(context).pushNamed('/productPage');},
                   child: Container(
                     padding: EdgeInsets.all(1),
@@ -238,7 +238,7 @@ class _homePageState extends State<homePage> with SingleTickerProviderStateMixin
                         children: <Widget>[
                           Container(margin: EdgeInsets.symmetric(vertical: 5),child: Image.network(path),height: 75,),
                           Container(margin: EdgeInsets.only(left: 10,top: 5),width: MediaQuery.of(context).size.width,child: Text("Product Name",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),)),
-                          Container(margin: EdgeInsets.only(left: 10,top: 5),width: MediaQuery.of(context).size.width,child: Text("RS: 600")),
+                           Container(margin: EdgeInsets.only(left: 10,top: 5),width: MediaQuery.of(context).size.width,child: Text("RS: 600")),
                           Container(
                             margin: EdgeInsets.symmetric(horizontal: 10,vertical: 5),
                             child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,children: <Widget>[

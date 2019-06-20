@@ -178,15 +178,15 @@ bool obsureTextValue = true;
                       ),
                     ),
                     SizedBox(height: 40.0),
-                    Container(
+                    GestureDetector(
+                          onTap: validateAndSubmit,
+                          child:  Container(
                       height: 40.0,
                       child: Material(
                         borderRadius: BorderRadius.circular(20.0),
                         shadowColor: Colors.greenAccent,
                         color: Colors.green,
                         elevation: 7.0,
-                        child: GestureDetector(
-                          onTap: validateAndSubmit,
                           child: Center(
                             child: Text(
                               'LOGIN',
@@ -196,9 +196,9 @@ bool obsureTextValue = true;
                                   fontFamily: 'Montserrat'),
                             ),
                           ),
-                        ),
-                      ),
-                    ),
+                      
+                      )),
+                          ),
                     SizedBox(height: 20.0),
                                     ],
                 )
