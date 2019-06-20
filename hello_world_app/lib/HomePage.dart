@@ -4,8 +4,8 @@ import 'category.dart';
 import 'Checkout/shoppingCart.dart';
 import 'Checkout/addressDetails.dart';
 
-import 'productDetail.dart';
-import 'productList.dart';
+import 'package:hello_world_app/Product/productDetail.dart';
+import 'package:hello_world_app/Product/productList.dart';
 import 'Login/Authentication.dart';
 
 
@@ -334,9 +334,7 @@ class _partBHSState extends State<partBHS> {
                                     children: <Widget>[
                                       Text("T-Shirt ",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color: Colors.white),),
                                       Text("RS: 250 ",style: TextStyle(fontSize: 14,color: Colors.white),),
-                                      
-
-                                      
+        
                                     ],
                                   ),
                                 ),

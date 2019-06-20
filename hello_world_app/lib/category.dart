@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'productList.dart';
+import 'Product/productList.dart';
 Color cd = const Color.fromARGB(0xFF, 0x20, 0x3A, 0x43);
 Color c = const Color.fromARGB(0xFF, 0x2C, 0x53, 0x64);
 String path = 'https://cdna.4imprint.com/prod/extras/006729/391089/700/1.jpg';
