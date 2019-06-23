@@ -3,6 +3,9 @@ class productListPage extends StatefulWidget{
   @override
   State createState() => new ProductList();
 }
+Color cd = const Color.fromARGB(0xAA, 0x00, 0x00, 0x00);
+Color c = const Color.fromARGB(0xAA, 0x00, 0x00, 0x00);
+
 class ProductList extends State<productListPage>{
   @override
   Widget build(BuildContext context) {
@@ -10,7 +13,7 @@ class ProductList extends State<productListPage>{
         appBar: new AppBar(
           title: Text("Mens Collection"),
           elevation: 0.0,
-          backgroundColor: Colors.grey,
+          backgroundColor: cd,
           centerTitle: true,
           leading: IconButton(
             onPressed: () {},

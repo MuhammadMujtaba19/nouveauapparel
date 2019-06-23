@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/animation.dart';
 import 'category.dart';
-import 'Checkout/shoppingCart.dart';
-import 'Checkout/addressDetails.dart';
-
+import 'ProfilePage.dart';
+import 'Checkout/Checkoutpage1.dart';
 import 'package:hello_world_app/Product/productDetail.dart';
 import 'package:hello_world_app/Product/productList.dart';
 import 'Login/Authentication.dart';
@@ -11,9 +10,12 @@ import 'Login/Authentication.dart';
 
 int pageSelectorIndex=0;
 
-Color cdd = const Color.fromARGB(0xFF, 0x0F, 0x20, 0x27);
-Color cd = const Color.fromARGB(0xFF, 0x20, 0x3A, 0x43);
-Color c = const Color.fromARGB(0xFF, 0x2C, 0x53, 0x64);
+// Color cd = const Color.fromARGB(0xFF, 0x20, 0x3A, 0x43);
+// Color c = const Color.fromARGB(0xFF, 0x2C, 0x53, 0x64);
+
+Color cd = const Color.fromARGB(0xAA, 0x00, 0x00, 0x00);
+Color c = const Color.fromARGB(0xAA, 0x00, 0x00, 0x00);
+
 Duration dd=new Duration(seconds: 2);
 
 String itemName,itemImage,itemSubname,itemPrice, itemRating;
@@ -269,10 +271,10 @@ class _homePageState extends State<homePage> with SingleTickerProviderStateMixin
       return new categoryPage();
     }
     else if(pageSelectorIndex==2){
-      return new MyCart();
+      return new Checkout1();
     }
     else if (pageSelectorIndex==3){
-      return new AddressPage();
+      return new MyProfile();
     }
   }
 }
@@ -284,7 +286,7 @@ class partBHS extends StatefulWidget {
   @override
   _partBHSState createState() => _partBHSState();
 }
-String path='https://cdna.4imprint.com/prod/extras/006729/391089/700/1.jpg';
+String path='https://armapparels.com.pk/wp-content/uploads/2019/04/JKR-03HS_Black_SQ.jpg';
 String p2='assets/pic1.jpg';
 List pat=['https://images.unsplash.com/photo-1529374255404-311a2a4f1fd9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=749&q=80',
           'https://images.unsplash.com/photo-1523380677598-64d85d015339?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60',

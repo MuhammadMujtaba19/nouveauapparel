@@ -1,9 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_pro/carousel_pro.dart';
-Color cd = const Color.fromARGB(0xFF, 0x20, 0x3A, 0x43);
-Color c = const Color.fromARGB(0xFF, 0x2C, 0x53, 0x64);
+// Color cd = const Color.fromARGB(0xFF, 0x20, 0x3A, 0x43);
+// Color c = const Color.fromARGB(0xFF, 0x2C, 0x53, 0x64);
 
+Color cd = const Color.fromARGB(0xBB, 0x00, 0x00, 0x00);
+Color c = const Color.fromARGB(0xBB, 0x00, 0x00, 0x00);
 class ImageCarousel extends StatefulWidget {
 
   String itemImage;
@@ -38,7 +40,7 @@ class _ImageCarouselState extends State<ImageCarousel> with SingleTickerProvider
     double screenHeight = MediaQuery.of(context).size.height;
 
     Widget carousel = new Carousel(
-      boxFit: BoxFit.fitHeight,
+      boxFit: BoxFit.fitWidth,
       images: [
         NetworkImage(itemImage),
         NetworkImage(itemImage),
@@ -49,40 +51,40 @@ class _ImageCarouselState extends State<ImageCarousel> with SingleTickerProvider
       animationDuration: Duration(seconds: 1),
     );
 
-    Widget banner = new Padding(
-      padding: const EdgeInsets.only(top: 20.0, left: 20.0),
-        child: new Container(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(15.0),
-                bottomRight: Radius.circular(15.0)),
-            color: Colors.amber.withOpacity(0.5),
-          ),
-          padding: const EdgeInsets.all(10.0),
-          child: new Text(
-            'Banner on top of carousel',
-            style: TextStyle(
-              fontFamily: 'fira',
-              fontSize: animation.value,//18.0,
-              //color: Colors.white,
-            ),
-          ),
-        ),
-      // ),
-    //  ),
-    );
+    // Widget banner = new Padding(
+    //   padding: const EdgeInsets.only(top: 2.0, left: 20.0),
+    //     child: new Container(
+    //       decoration: BoxDecoration(
+    //         borderRadius: BorderRadius.only(
+    //             topLeft: Radius.circular(15.0),
+    //             bottomRight: Radius.circular(15.0)),
+    //         color: Colors.amber.withOpacity(0.5),
+    //       ),
+    //       padding: const EdgeInsets.all(0.0),
+    //       child: new Text(
+    //         'Banner on top of carousel',
+    //         style: TextStyle(
+    //           fontFamily: 'fira',
+    //           fontSize: animation.value,//18.0,
+    //           //color: Colors.white,
+    //         ),
+    //       ),
+    //     ),
+    //   // ),
+    // //  ),
+    // );
 
     return new Container(
       child: new Center(
         child: new Container(
-          padding: const EdgeInsets.all(30.0),
+          padding: const EdgeInsets.all(0.0),
           height: screenHeight / 2,
           child:  new ClipRRect(
-            borderRadius: BorderRadius.circular(30.0),
+            borderRadius: BorderRadius.circular(1.0),
             child: new Stack(
               children: [
                 carousel,
-                banner,
+                // banner,
               ],
             ),
           ),
@@ -118,45 +120,34 @@ class _ProductPageState extends State<ProductPage> {
   Size screenSize = MediaQuery.of(context).size;
 
     return Scaffold(
+   resizeToAvoidBottomPadding: false ,
       backgroundColor: Colors.white,
-      body: SafeArea(
-        top: true,
-        child: CustomScrollView(
-      slivers: <Widget>[
-        new SliverAppBar(
-      floating: true,
-      pinned: false,
-      expandedHeight: 280.0,
-     // pinned: true,
-      flexibleSpace: FlexibleSpaceBar(
-          centerTitle: true,
-          title: Text("",
-              style: TextStyle(
-                color: Colors.black,
-                fontSize: 16.0,
-              )),
-          background:  new Container(
-                height: 280.0,
-                decoration: new BoxDecoration(
-                    image: DecorationImage(
-                      image: NetworkImage(widget.itemImage),
-                      fit:BoxFit.contain,
-                    ),
-                    // borderRadius: BorderRadius.only(
-                    //   bottomRight: Radius.circular(120.0),
-                    //   bottomLeft: Radius.circular(120.0),
-                    // )
-                )
-            ),
-          ),
 
-    ),
-    SliverFillRemaining(
-      
-      child:  SafeArea(
-              bottom: true,
-              child: new Container(
-         child: Column(
+      body: new CustomScrollView(
+      slivers:<Widget>[ SliverAppBar(
+              expandedHeight: 250.0,
+              floating: false,
+              pinned: true,
+              flexibleSpace: FlexibleSpaceBar(
+                  centerTitle: true,
+                  title: Text("",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 16.0,
+                  backgroundColor:cd, 
+                      )),
+                    background: new ImageCarousel(widget.itemImage),
+                  
+                  ),
+            ),
+          SliverList(delegate: SliverChildListDelegate(
+            [
+              new SingleChildScrollView(
+                child: Container(
+      // flex: 1,
+      // minimum: EdgeInsets.only(bottom: 10),
+         child: 
+         Column(
            children: <Widget>[
             //  new SizedBox(height:20.0,),
              new Card(
@@ -207,8 +198,6 @@ class _ProductPageState extends State<ProductPage> {
                  ),
                ),
              ),
-          ImageCarousel(widget.itemImage),
-
           new Column(
             children: <Widget>[
               new Card(
@@ -231,7 +220,7 @@ class _ProductPageState extends State<ProductPage> {
                               ),
                             )
                         ),
-                        new Card(
+              new Card(
                             child: new Container(
                                 width:screenSize.width,
                                 margin: new EdgeInsets.only(left:20,right:20),
@@ -308,12 +297,19 @@ class _ProductPageState extends State<ProductPage> {
           )
            ],
          )
-        ),
-      ),
-    )
-      ],
+        // ),
+      // ),
     ),
-      ),
+
+              )
+            ]
+          ),)
+          ]
+  ), 
+
+
+    
+    
       floatingActionButton: new Stack(
           alignment: Alignment.topLeft,
           children: <Widget>[

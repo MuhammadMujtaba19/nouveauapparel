@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'Product/productList.dart';
-Color cd = const Color.fromARGB(0xFF, 0x20, 0x3A, 0x43);
+Color cd = const Color.fromARGB(0xAA, 0x00, 0x00, 0x00);
 Color c = const Color.fromARGB(0xFF, 0x2C, 0x53, 0x64);
 String path = 'https://cdna.4imprint.com/prod/extras/006729/391089/700/1.jpg';
 String p2 = 'assets/pic1.jpg';
@@ -41,16 +41,24 @@ class categoryPage extends StatelessWidget {
         '/productList':(BuildContext context)=>productListPage(),
       },
       home: Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.white,
-          title: Center(
-            child: Text(
-              "Nouveau Apparels",
-              style: TextStyle(color: cd),
-            ),
-          ),
+            appBar: new AppBar(
+          title: Text("Nouveau Apparels"),
+          elevation: 0.0,
+          backgroundColor: cd,
+          centerTitle: true,
+          leading: IconButton(
+            onPressed: () {},
+            icon: Icon(Icons.arrow_back),
+            color: Colors.black,),
+          actions: <Widget>[
+            IconButton(
+              icon: Icon(Icons.shopping_cart),
+              onPressed: () {},
+              color: Colors.black,
+            )
+          ],
         ),
-        body: CatBody(),
+    body: CatBody(),
       ),
     );
   }
@@ -75,7 +83,7 @@ class _CatBodyState extends State<CatBody> {
               height: 180,
               padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
               child: ClipRRect(
-                borderRadius: BorderRadius.all(Radius.circular(30)),
+                borderRadius: BorderRadius.all(Radius.circular(10)),
                 child: Stack(
                   children: <Widget>[
                     Opacity(
