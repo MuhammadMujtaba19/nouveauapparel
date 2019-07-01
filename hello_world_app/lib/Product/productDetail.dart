@@ -112,7 +112,17 @@ String itemName,itemImage,itemSubname,itemPrice, itemRating;
 
 class _ProductPageState extends State<ProductPage> {
 
-  
+int quantity=0;
+void incrementCounter(){
+  setState(() {
+    quantity=quantity+1;
+  });
+}  
+void decrementCounter(){
+  setState(() {
+    quantity = (quantity == 0) ? 0 : quantity-1;
+  });
+}  
 
   @override
   Widget build(BuildContext context) {
@@ -135,11 +145,12 @@ class _ProductPageState extends State<ProductPage> {
                         color: Colors.white,
                         fontSize: 16.0,
                   backgroundColor:cd, 
-                      )),
+                      )
+                    ),
                     background: new ImageCarousel(widget.itemImage),
-                  
+                
                   ),
-            ),
+            backgroundColor: c,),
           SliverList(delegate: SliverChildListDelegate(
             [
               new SingleChildScrollView(
@@ -271,17 +282,17 @@ class _ProductPageState extends State<ProductPage> {
                                           CircleAvatar(
                                             backgroundColor: c,
                                               child:IconButton(
-                                                onPressed: (){},
+                                                onPressed: decrementCounter,
                                                 color: c,
                                                   icon:Icon(Icons
                                                       .remove,color:Colors.white)
                                               )
                                           ),
-                                          Text("0",style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.w700),),
+                                          Text(quantity.toString(),style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.w700),),
                                           CircleAvatar(
                                             backgroundColor: c,
                                               child:IconButton(
-                                                onPressed: (){},
+                                                onPressed: incrementCounter,
                                                 color: c,
                                                   icon:Icon(Icons.add,color:Colors.white)
                                               )
@@ -306,9 +317,6 @@ class _ProductPageState extends State<ProductPage> {
           ),)
           ]
   ), 
-
-
-    
     
       floatingActionButton: new Stack(
           alignment: Alignment.topLeft,
@@ -324,7 +332,7 @@ class _ProductPageState extends State<ProductPage> {
             )
           ],
         ),
-        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
         bottomNavigationBar:new BottomAppBar(
             elevation: 0.0,
             color:c,

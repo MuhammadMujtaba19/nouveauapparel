@@ -93,7 +93,7 @@ bool obsureTextValue = true;
             new Image(
               image: AssetImage('assets/background.jpg'),
               fit: BoxFit.cover,
-              color: Colors.black87,
+              color: Colors.black45,
               colorBlendMode: BlendMode.darken,
             ),
           Column(
@@ -103,20 +103,23 @@ bool obsureTextValue = true;
               child: Stack(
                 children: <Widget>[
                   Container(
+                    alignment: Alignment.center,
                     padding: EdgeInsets.fromLTRB(15.0, 110.0, 0.0, 0.0),
-                    child: Text('Hello',
+                    child: Text('Nouveau',
                         style: TextStyle(
-                            fontSize: 40.0, fontWeight: FontWeight.bold)),
+                            fontSize: 55.0, fontWeight: FontWeight.bold)),
                   ),
                   Container(
+                    alignment: Alignment.center,
                     padding: EdgeInsets.fromLTRB(16.0, 175.0, 0.0, 0.0),
-                    child: Text('There',
+                    child: Text('Apparels',
                         style: TextStyle(
-                            fontSize: 40.0, fontWeight: FontWeight.bold)),
+                            fontSize: 45.0, fontWeight: FontWeight.bold)),
                   ),
                   Container(
+                    alignment: Alignment.centerRight,
                     padding: EdgeInsets.fromLTRB(130.0, 175.0, 0.0, 0.0),
-                    child: Text('.',
+                    child: Text('',
                         style: TextStyle(
                             fontSize: 40.0,
                             fontWeight: FontWeight.bold,

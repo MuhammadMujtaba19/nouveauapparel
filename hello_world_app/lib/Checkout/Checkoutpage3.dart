@@ -42,10 +42,10 @@ class StepperTest3 extends StatelessWidget {
             color: Colors.black,),
           
         ),
-      body:new ListView(
-      children: <Widget>[
-        new SizedBox(height: 15,),
-      
+      body:new Container(
+        height: MediaQuery.of(context).size.height,
+        child: new Column(
+          children: <Widget>[
         new Container(
           alignment: Alignment.topCenter,
           margin: EdgeInsets.only(left: 2),
@@ -97,6 +97,11 @@ class StepperTest3 extends StatelessWidget {
 
       ),
         ),
+        new Container(
+          child: new ListView(
+      children: <Widget>[
+        new SizedBox(height: 15,),
+      
         new Center(child: new Text(
 
           "Order Details",style: TextStyle(fontSize: 20),
@@ -197,7 +202,11 @@ class StepperTest3 extends StatelessWidget {
           alignment: Alignment.bottomCenter,
         ),      
         
-   new Row(
+      ],
+    ),
+      height: MediaQuery.of(context).size.height-170,
+        ),     
+       new Row(
         mainAxisAlignment: MainAxisAlignment.start, children: <Widget>[
         new Container(
           width: MediaQuery.of(context).size.width/4,
@@ -225,8 +234,10 @@ class StepperTest3 extends StatelessWidget {
       ],
       )
      
-      ],
-    )    
+          ],
+        ),
+      )
+         
   );
  }
  

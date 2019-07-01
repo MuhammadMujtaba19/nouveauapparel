@@ -21,11 +21,11 @@ class StepperTest2 extends StatelessWidget {
           
         ),
 
-       body:
-new ListView(
-      children: <Widget>[
-        new SizedBox(height: 15,),
-               new Container(
+       body:new Container(
+         height: MediaQuery.of(context).size.height,
+         child: new Column(
+           children: <Widget>[
+    new Container(
           alignment: Alignment.topCenter,
           margin: EdgeInsets.only(left: 2),
           width: MediaQuery.of(context).size.width,
@@ -78,7 +78,12 @@ new ListView(
         ],
         ),
       ),
-        new SafeArea(
+        new Container(
+  height: MediaQuery.of(context).size.height-170,
+    child:new ListView(
+      children: <Widget>[
+        new SizedBox(height: 15,),
+           new SafeArea(
         child:
       new Container(
         padding: const EdgeInsets.only(left:20.0,right:20.0,bottom:20.0),
@@ -122,7 +127,11 @@ new ListView(
   )
 ),
        new SizedBox(height: 20,),
-     new Row(
+     
+      ]
+      )
+        ),
+          new Row(
         mainAxisAlignment: MainAxisAlignment.start, children: <Widget>[
         new Container(
           width: MediaQuery.of(context).size.width/4,
@@ -152,8 +161,9 @@ new ListView(
       ],
       )
      
-      ]
-      )
+           ]
+      ),
+       )
     );
   }
 }

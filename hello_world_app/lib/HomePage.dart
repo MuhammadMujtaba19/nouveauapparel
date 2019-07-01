@@ -6,9 +6,14 @@ import 'Checkout/Checkoutpage1.dart';
 import 'package:hello_world_app/Product/productDetail.dart';
 import 'package:hello_world_app/Product/productList.dart';
 import 'Login/Authentication.dart';
+import 'dart:async';
+import 'dart:convert';
+import 'package:http/http.dart' as http;
+
 
 
 int pageSelectorIndex=0;
+  List data,data1;
 
 // Color cd = const Color.fromARGB(0xFF, 0x20, 0x3A, 0x43);
 // Color c = const Color.fromARGB(0xFF, 0x2C, 0x53, 0x64);
@@ -93,6 +98,18 @@ class homePage extends StatefulWidget {
 }
 
 class _homePageState extends State<homePage> with SingleTickerProviderStateMixin{
+    final String url = "https://api.myjson.com/bins/1f9g7f";
+
+  Future<String> getData()async{
+    var res  =await http.get(Uri.encodeFull(url),headers:{"Accept":"application/json"});
+  setState(() {
+      var resBody = json.decode(res.body);
+      data = resBody["Featured"];
+      data1= resBody["Recomended"];
+  });
+  return "success";
+  }
+
   Animation an;
   AnimationController anc;
    
@@ -223,7 +240,7 @@ class _homePageState extends State<homePage> with SingleTickerProviderStateMixin
             shrinkWrap: true,
             physics: ClampingScrollPhysics(),
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
-            itemCount: 6,
+            itemCount: data1.length,
             itemBuilder: (context,index){
               return ClipRRect(
                 borderRadius: BorderRadius.all(Radius.circular(25)),
@@ -241,14 +258,13 @@ class _homePageState extends State<homePage> with SingleTickerProviderStateMixin
                       elevation: 20,
                       child: Column(
                         children: <Widget>[
-                          Container(margin: EdgeInsets.symmetric(vertical: 5),child: Image.network(path),height: 75,),
-                          Container(margin: EdgeInsets.only(left: 10,top: 5),width: MediaQuery.of(context).size.width,child: Text("Product Name",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),)),
-                           Container(margin: EdgeInsets.only(left: 10,top: 5),width: MediaQuery.of(context).size.width,child: Text("RS: 600")),
+                          Container(margin: EdgeInsets.symmetric(vertical: 5),child:Image.network(data1[index]["image"]),height: 75,),
+                          Container(margin: EdgeInsets.only(left: 10,top: 5),width: MediaQuery.of(context).size.width,child: Text(data1[index]["name"],style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),)),
+                           Container(margin: EdgeInsets.only(left: 10,top: 5),width: MediaQuery.of(context).size.width,child: Text(data1[index]["price"])),
                           Container(
                             margin: EdgeInsets.symmetric(horizontal: 10,vertical: 5),
                             child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,children: <Widget>[
                               Container(child: Container(child: Row(children: <Widget>[Text("4.2  "),Icon(Icons.star,color: Colors.orange,)],),),),
-                              Container(child: Text("165 views"),)
                             ],),
                           )
 
@@ -277,6 +293,11 @@ class _homePageState extends State<homePage> with SingleTickerProviderStateMixin
       return new MyProfile();
     }
   }
+  @override
+  void initState() {
+    super.initState();
+    this.getData();
+  }
 }
 
 
@@ -288,11 +309,7 @@ class partBHS extends StatefulWidget {
 }
 String path='https://armapparels.com.pk/wp-content/uploads/2019/04/JKR-03HS_Black_SQ.jpg';
 String p2='assets/pic1.jpg';
-List pat=['https://images.unsplash.com/photo-1529374255404-311a2a4f1fd9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=749&q=80',
-          'https://images.unsplash.com/photo-1523380677598-64d85d015339?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60',
-          'https://images.unsplash.com/photo-1513787345924-e09d880a19a5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60',
-          'https://images.unsplash.com/photo-1484516758160-69878111a911?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60'
-];
+
 class _partBHSState extends State<partBHS> {
   @override
   Widget build(BuildContext context) {
@@ -307,7 +324,7 @@ class _partBHSState extends State<partBHS> {
             height: 200,
             child: Container(child:ListView.builder(
               scrollDirection: Axis.horizontal,
-              itemCount: 4,
+              itemCount: data.length,
               itemBuilder: (context,index){
                 return Container(
                   child: Padding(
@@ -316,7 +333,7 @@ class _partBHSState extends State<partBHS> {
                       borderRadius: BorderRadius.all(Radius.circular(25)),
                       child: Stack(
                         children: <Widget>[
-                          Container(height: 200,width: 140,child: Image.network(pat[index],fit: BoxFit.cover,)),
+                          Container(height: 200,width: 140,child: Image.network(data[index]["image"],fit: BoxFit.cover,)),
                           Positioned(
                               left: 0,
                               bottom: 0,
@@ -335,7 +352,7 @@ class _partBHSState extends State<partBHS> {
                                     mainAxisSize: MainAxisSize.min,
                                     children: <Widget>[
                                       Text("T-Shirt ",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color: Colors.white),),
-                                      Text("RS: 250 ",style: TextStyle(fontSize: 14,color: Colors.white),),
+                                      Text("RS:"+data[index]["price"].toString(),style: TextStyle(fontSize: 14,color: Colors.white),),
         
                                     ],
                                   ),
@@ -360,7 +377,8 @@ class _partBHSState extends State<partBHS> {
       
     );
   }
-}
+ 
+  }
 
 
 
@@ -398,5 +416,6 @@ class fooClipper extends CustomClipper<Path>{
         // TODO: implement shouldReclip
         return true;
       }
+      
 }
 

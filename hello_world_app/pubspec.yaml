@@ -23,7 +23,7 @@ dependencies:
   firebase_auth:
   animated_background: ^0.0.2
   carousel_pro: ^0.0.13
-
+  http: any
 dev_dependencies:
   flutter_test:
     sdk: flutter

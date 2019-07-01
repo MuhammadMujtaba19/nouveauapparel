@@ -21,10 +21,11 @@ class Checkout1 extends StatelessWidget {
           
         ),
 
-  body:new ListView(
-      children: <Widget>[
-        new SizedBox(height: 15,),
-        new Container(
+body:new Container( 
+  height:MediaQuery.of(context).size.height,
+  child:new Column(
+  children:<Widget>[
+  new Container(
           alignment: Alignment.topCenter,
           margin: EdgeInsets.only(left: 2),
           width: MediaQuery.of(context).size.width,
@@ -81,13 +82,25 @@ class Checkout1 extends StatelessWidget {
 
       ),
         ),
+
+  new Container(
+  height: MediaQuery.of(context).size.height-230,
+    child:new ListView(
+      children: <Widget>[
+        new SizedBox(height: 15,),
         
-       singlecard("AN Original Is Worth More","Rs 750","1","assets/tee1.jpg"),
+        singlecard("AN Original Is Worth More","Rs 750","1","assets/tee1.jpg"),
         singlecard("I am Not Lazy ","Rs 700","1","assets/tee2.jpg"),
         singlecard("Army Men","Rs 550","2","assets/tee3.jpg"),
 
         new SizedBox(height: 20,),
-        new Row(
+        
+      ],
+    ),
+  ),
+  new Align(
+    alignment: Alignment.bottomCenter,
+    child: new  Row(
         mainAxisAlignment: MainAxisAlignment.start, children: <Widget>[
         new Container(
           width: MediaQuery.of(context).size.width/4,
@@ -112,10 +125,16 @@ class Checkout1 extends StatelessWidget {
                textColor: Colors.white,),
         ),
       ],
-      )
-     
-      ],
-    )    
+        
+      ),
+  ) 
+        
+  ]
+      
+)
+
+)
+    
   );
  }
  
